@@ -1,5 +1,9 @@
 # Comparison of random city names with the unified geonames
 
+## Project status
+
+In process.
+
 ## Task 
 
 To create a solution for selecting the most suitable names from the geonames.
