@@ -1,32 +1,38 @@
-# Comparison of random city names with the unified geonames
+# Instruction on using the script for system integration
 
-## Task 
+1) Create (or import from the database) the working dataset as "corpus". It should contain the following columns: "geonameid", "alternate_name" (**please rename as "name"**), "region", "country", "population". A merge of a few (in our case, four) datasets might be required to achieve this.
 
-To create a solution for selecting the most suitable names from the geonames.
+2) Run the following code:
+   
+   `%load_ext autoreload`
+   
+   `%autoreload 2`
 
-## Project description 
+4) From the script import the "clear_text" function.
 
-The career center needs to be able to compare random city names with unified geonames for internal use. The cities in question might be located in Russia, Belarus, Armenia, Kazakhstan, Kyrgyzstan, Georgia or Serbia. The operator should receive a list of recommended names which also contains geonameid, region, country and cosine similarity. 
+5) Apply it to the "name" column of the working dataset.
 
-Four datasets are merged into one full dataset, which is then filtered for the required countries and the working dataset is created. The "name" column is cleared from the unnecessary symbols using Re.
+6) Turn the column into values using:
 
-A decision is made to use the Sentence Transformer for the task. Embeddings are created using LaBSE. Semantic search for a randomly chosen name 'Киров' demonstrates a match in the first line with the score of 0.9
+   `names = corpus.name.drop_duplicates().values`
 
-The resulting dataset is sorted by the population and converted into the list of tuples as per requirement. The "geoname" function is created for optimizing the further use of the solution.
+7) Create embeddings with the Sentence Transformer:
 
-Five random queries are chosen from the test dataset and tested with the "geonames" function. For the Russian city names it gives a stable match inside the top 5 variants with the score ranging from 0.79 to 0.95. For the Georgian name 'Ахалцихе' the function gets a correct geonameid in the first line, but the spelling is a bit off, although still recognizable.
+   `labse = SentenceTransformer('sentence-transformers/LaBSE)`
+   
+   `embeddings = labse.encode(names)`
 
-All in all, considering that the solution will be used as a recommendation system for a human operator, the Sentence Transformer works quite well for this task and will be suitable for the customer's needs.
+9) Enter a query (for example, **'Киров'**) and run the code:
 
-## Data description
+   `result = pd.DataFrame(util.semantic_search(labse.encode('Киров'), embeddings)[0])`
+   
+   `result = result.assign(name=names[result.corpus_id])`
 
-Datasets from download.geonames.org which contain geonameid's, region and country info, etc. (admin1CodesASCII, alternateNamesV2, cities15000, countryInfo).
+11) From the script import "MyClass"
 
-## Used libraries
-*pandas*
+12) To get the required list of tuples run the code (where the "result" and "corpus" are the datasets from line 7 and line 4, respectively):
+   
+    `MyClass(result).geo(corpus)`
 
-*re*
-
-*sentencetransformer*
-
-*sqlalchemy*
+   
+   
