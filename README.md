@@ -1,12 +1,12 @@
-# Comparison of random city names with the unified geonames
+# Geonames recommendation system
 
 ## Project status
 
-In process.
+Done.
 
 ## Task 
 
-To create a solution for selecting the most suitable names from the geonames.
+To create a recommendation system that receives a random city name as a query and returns a list of tuples with recommended names in unified spelling and geonameid's for these locations.
 
 ## Project description 
 
