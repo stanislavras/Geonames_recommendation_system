@@ -18,7 +18,7 @@ A decision is made to use the Sentence Transformer for the task. Embeddings are 
 
 The resulting dataset is sorted by the population and converted into the list of tuples as per requirement. The `geoname` function is created for optimizing the further use of the solution.
 
-Five random queries are chosen from the test dataset and tried with the `geonames` function. For all five queries the solution finds a location with the correct geonameid in the first row. In terms of spelling, one is a full match with the recommended geoname (score=0.95); three have a minor difference of one letter each (scores from 0.91 to 0.93); and one is a bit off (score=0.89), but still fully recognizable. 
+Five random queries are chosen from the test dataset and tried with the `geoname` function. For all five queries the solution finds a location with the correct geonameid in the first row. In terms of spelling, one is a full match with the recommended geoname (score=0.95); three have a minor difference of one letter each (scores from 0.91 to 0.93); and one is a bit off (score=0.89), but still fully recognizable. 
 
 Considering that the algorithm will be used as a recommendation system for a human operator, the Sentence Transformer based solution works quite well and might be used for the designated task.
 
