@@ -2,7 +2,7 @@
 
 ## Project status
 
-Done.
+Done
 
 ## Task 
 
@@ -20,11 +20,6 @@ The resulting dataset is sorted by the population and converted into the list of
 
 Five random queries are chosen from the test dataset and tried with the `geonames` function. For all five queries the solution finds a location with the correct geonameid in the first row. In terms of spelling, one is a full match with the recommended geoname (score=0.95); three have a minor difference of one letter each (scores from 0.91 to 0.93); and one is a bit off (score=0.89), but still fully recognizable. 
 
-All in all, considering that the solution will be used as a recommendation system for a human operator, the Sentence Transformer works quite well for this task and will be suitable for the customer's needs.
-
- 
-The test dataset is loaded. Five random queries are chosen from it and tested with the `geonames` function. For all five queries the solution finds a location with the correct geonameid in the first row. In terms of spelling, "Новоалтайск" is a full match with the recommended geoname (score=0.95); "Каспийск", "Павловск" and "Уссурийск" have a minor difference of one letter each (scores from 0.91 to 0.93); "Ахалцихе" is a bit off (score=0.89), but still fully recognizable. 
-
 Considering that the algorithm will be used as a recommendation system for a human operator, the Sentence Transformer based solution works quite well and might be used for the designated task.
 
 ## Data description
@@ -34,8 +29,12 @@ Datasets from download.geonames.org which contain geonameid's, region and countr
 ## Used libraries
 *pandas*
 
-*re*
+*unicode*
 
 *sentencetransformer*
 
-*sqlalchemy*
+*util*
+
+*create_engine*
+
+*URL*
